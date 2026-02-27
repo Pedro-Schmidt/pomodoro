@@ -2,17 +2,25 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(3489);
   const [paused, setPaused] = useState(false);
 
   const getMinutes = () => {
     const minutes = Math.floor(time / 60);
-    return minutes;
+    if (minutes < 10) {
+      return `0${minutes}`;
+    } else {
+      return minutes;
+    }
   };
 
   const getSeconds = () => {
     const seconds = time % 60;
-    return seconds;
+    if (seconds < 10) {
+      return `0${seconds}`;
+    } else {
+      return seconds;
+    }
   };
 
   const getHours = () => {
@@ -23,13 +31,15 @@ function App() {
   return (
     <main>
       <h1>PHFS Pomodoro</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <input type="number" name="" id="" />
-      </form>
+      <p>
+        {getHours()}:{getMinutes()}:{getSeconds()}
+      </p>
+      <div>
+        <button>+5</button>
+        <button>+10</button>
+        <button>+30</button>
+        <button>Reset</button>
+      </div>
     </main>
   );
 }
